@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design Tokens ─────────────────────────────────────────── */
+:root {
+  /* Light mode */
+  --background: #f0f4ff;
+  --foreground: #0f172a;
+  --surface: rgba(255, 255, 255, 0.65);
+  --surface-solid: #ffffff;
+  --surface-elevated: rgba(255, 255, 255, 0.85);
+  --border-color: rgba(15, 23, 42, 0.1);
+  --accent: #4f6ef7;
+  --accent-2: #8b5cf6;
+  --accent-glow: rgba(79, 110, 247, 0.3);
+  --muted-foreground: #64748b;
+  --success: #10b981;
+  --warning: #f59e0b;
+}
+
+.dark {
+  /* Dark mode — deep navy, never pure black */
+  --background: #080c1a;
+  --foreground: #e8edf8;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-solid: #0f172a;
+  --surface-elevated: rgba(255, 255, 255, 0.07);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --accent: #6474f8;
+  --accent-2: #a78bfa;
+  --accent-glow: rgba(100, 116, 248, 0.35);
+  --muted-foreground: #94a3b8;
+  --success: #34d399;
+  --warning: #fbbf24;
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Glass Card ─────────────────────────────────────────────── */
+@layer components {
+  .glass-card {
+    background: var(--surface);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  .dark .glass-card {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-card-elevated {
+    background: var(--surface-elevated);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  .dark .glass-card-elevated {
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .accent-gradient-text {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+}
+
+/* ─── Range Slider ───────────────────────────────────────────── */
+input[type="range"] {
+  @apply appearance-none bg-transparent cursor-pointer w-full;
+  touch-action: manipulation;
+  /* Extend vertical hit area to ≥44px without changing the track/thumb visuals */
+  padding-block: 11px;
+}
+
+input[type="range"]::-webkit-slider-container {
+  @apply overflow-visible;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to right,
+    var(--accent) 0%,
+    var(--accent) var(--slider-pct, 0%),
+    var(--border-color) var(--slider-pct, 0%),
+    var(--border-color) 100%
+  );
+}
+
+/* Fallback track (Firefox) */
+input[type="range"]::-moz-range-track {
+  height: 6px;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+input[type="range"]::-moz-range-progress {
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--accent);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--surface-solid);
+  box-shadow: 0 0 0 0 var(--accent-glow);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {
+  box-shadow: 0 0 0 6px var(--accent-glow);
+  transform: scale(1.1);
+}
+
+input[type="range"]:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 8px var(--accent-glow);
+  outline: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--surface-solid);
+  box-shadow: 0 0 0 0 var(--accent-glow);
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+input[type="range"]:hover::-moz-range-thumb {
+  box-shadow: 0 0 0 6px var(--accent-glow);
+}
+
+input[type="range"]:disabled {
+  @apply cursor-not-allowed opacity-40;
+}
+
+input[type="range"]:disabled::-webkit-slider-thumb {
+  background: var(--muted-foreground);
+  box-shadow: none;
+  transform: none;
+}
+
+/* ─── Reduced Motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob {
+    animation: none !important;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
