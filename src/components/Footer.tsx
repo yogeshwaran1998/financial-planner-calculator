@@ -48,7 +48,7 @@ export function Footer() {
         </div>
 
         {/* Disclaimer */}
-        <div className="pt-6 border-t border-[var(--border-color)] flex flex-col md:flex-row md:items-start md:gap-10">
+        <div className="pt-6 border-t border-[var(--border-color)] flex flex-col md:flex-row md:items-center md:gap-10">
           <p className="text-xs text-[var(--muted-foreground)] leading-relaxed flex-1">
             <strong className="text-[var(--foreground)]">Disclaimer:</strong> All calculations are for educational and illustrative purposes only and do not constitute financial, investment, or tax advice. Results are estimates based on the inputs provided and assumed rates of return; actual returns may vary. Consult a qualified financial advisor before making investment decisions.
           </p>
