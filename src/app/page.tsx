@@ -160,13 +160,16 @@ export default function HomePage() {
             variants={stagger}
             className="space-y-4"
           >
-            <motion.p
+            <motion.div
               variants={fadeUp}
-              className="text-xs font-semibold font-display uppercase tracking-widest text-[var(--accent)]"
+              className="flex items-center gap-4"
             >
-              {category}
-            </motion.p>
-            <div className="h-px bg-[var(--border-color)]" />
+              <div className="flex-1 h-px bg-[var(--border-color)]" />
+              <span className="text-sm font-semibold font-display uppercase tracking-widest text-[var(--accent)] whitespace-nowrap">
+                {category}
+              </span>
+              <div className="flex-1 h-px bg-[var(--border-color)]" />
+            </motion.div>
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {calcs.map((calc) => (
