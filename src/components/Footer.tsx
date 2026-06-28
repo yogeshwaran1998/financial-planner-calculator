@@ -52,7 +52,7 @@ export function Footer() {
           <p className="text-xs text-[var(--muted-foreground)] leading-relaxed">
             <strong className="text-[var(--foreground)]">Disclaimer:</strong> All calculations are for educational and illustrative purposes only and do not constitute financial, investment, or tax advice. Results are estimates based on the inputs provided and assumed rates of return; actual returns may vary. Consult a qualified financial advisor before making investment decisions.
           </p>
-          <p className="text-xs text-[var(--muted-foreground)] text-right">
+          <p className="text-xs text-[var(--muted-foreground)]">
             © {new Date().getFullYear()} PlanDhan
           </p>
         </div>
