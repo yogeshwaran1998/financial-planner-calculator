@@ -2,9 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Overflow safety ────────────────────────────────────────── */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 /* ─── Design Tokens ─────────────────────────────────────────── */
 :root {
   /* Light mode */
+  color-scheme: light;
   --background: #f0f4ff;
   --foreground: #0f172a;
   --surface: rgba(255, 255, 255, 0.65);
@@ -21,6 +28,7 @@
 
 .dark {
   /* Dark mode — deep navy, never pure black */
+  color-scheme: dark;
   --background: #080c1a;
   --foreground: #e8edf8;
   --surface: rgba(255, 255, 255, 0.04);
@@ -169,6 +177,30 @@ input[type="range"]:disabled::-webkit-slider-thumb {
   background: var(--muted-foreground);
   box-shadow: none;
   transform: none;
+}
+
+/* ─── iOS Safari dark-mode fix ───────────────────────────────── */
+/*
+ * iOS WebKit composites backdrop-filter over white-tinted translucent
+ * surfaces as a hazy frost, lifting the dark UI and washing it out.
+ * This block matches iOS/iPadOS only (-webkit-touch-callout is
+ * unrecognised on desktop browsers and Android Chrome → evaluates false).
+ * We re-base dark surfaces to a dark navy tint and reduce blur radius
+ * so sampling can't whiten them.  Light-theme / Android / desktop
+ * are completely unaffected.
+ */
+@supports (-webkit-touch-callout: none) {
+  .dark {
+    --surface: rgba(15, 21, 38, 0.72);
+    --surface-elevated: rgba(23, 32, 56, 0.82);
+    --border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .dark .glass-card,
+  .dark .glass-card-elevated {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
 }
 
 /* ─── Reduced Motion ─────────────────────────────────────────── */

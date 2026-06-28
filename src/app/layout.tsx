@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Sora } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -21,6 +21,15 @@ const sora = Sora({
 export const metadata: Metadata = {
   title: "PlanDhan — Financial Calculators for Indian Investors",
   description: "Free financial calculators for SIP, FD, PPF, EMI, Retirement and more. Plan every rupee of your future.",
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#080c1a" },
+    { media: "(prefers-color-scheme: light)", color: "#f0f4ff" },
+  ],
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
