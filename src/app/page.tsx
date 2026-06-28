@@ -103,7 +103,7 @@ export default function HomePage() {
             </a>
             <Link
               href="/calculators/sip-growth"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-display font-semibold text-sm glass-card border border-[var(--border-color)] hover:border-[var(--accent)] text-[var(--foreground)] transition-all duration-200 hover:-translate-y-0.5"
+              className="ml-auto inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-display font-semibold text-sm glass-card border border-[var(--border-color)] hover:border-[var(--accent)] text-[var(--foreground)] transition-all duration-200 hover:-translate-y-0.5"
             >
               Try SIP Calculator
             </Link>

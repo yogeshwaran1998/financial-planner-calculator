@@ -17,7 +17,7 @@ function Sparkline({ data }: { data: number[] }) {
   const min = Math.min(...data);
   const range = max - min || 1;
   const W = 200;
-  const H = 56;
+  const H = 96;
   const pts = data.map((v, i) => {
     const x = (i / (data.length - 1)) * W;
     const y = H - ((v - min) / range) * H;
@@ -27,7 +27,7 @@ function Sparkline({ data }: { data: number[] }) {
   const fillPath = `M 0,${H} L ${pts.join(" L ")} L ${W},${H} Z`;
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-14" preserveAspectRatio="none">
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-24" preserveAspectRatio="none">
       <defs>
         <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#6474f8" stopOpacity="0.35" />
@@ -86,7 +86,7 @@ export function HeroPreview() {
       {/* Header row */}
       <div className="flex items-center justify-between mb-3">
         <div>
-          <p className="text-xs text-[var(--muted-foreground)] mb-0.5">SIP · ₹10K/mo · 12% · 20 yrs</p>
+          <p className="text-sm text-[var(--muted-foreground)] mb-0.5">SIP · ₹10K/mo · 12% · 20 yrs</p>
           <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-wider">Live Preview</p>
         </div>
         <span className="text-xs px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-medium">
@@ -116,7 +116,7 @@ export function HeroPreview() {
             {formatCurrency(totalInvested, currency)}
           </p>
         </div>
-        <div>
+        <div className="text-right">
           <p className="text-xs text-[var(--muted-foreground)]">Gains</p>
           <p className="text-sm font-display font-semibold text-emerald-600 dark:text-emerald-400 tabular-nums">
             {formatCurrency(returns, currency)}
