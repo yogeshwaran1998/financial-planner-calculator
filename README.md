@@ -2,12 +2,14 @@
 
 > Free, open-source financial planning calculators. No login, no ads — just the math you need to plan your investments.
 
+**Live demo:** [plandhan.netlify.app](https://plandhan.netlify.app)
+
 ---
 
 ## Calculators
 
 | Calculator | What it does |
-|---|---|
+| --- | --- |
 | **SIP Growth** | Projects the future value of recurring SIP investments |
 | **Goal SIP** | Calculates the monthly SIP needed to reach a target corpus |
 | **FD (Fixed Deposit)** | Computes maturity amount for fixed deposit investments |
@@ -31,7 +33,7 @@
 ## Tech Stack
 
 | Layer | Technology |
-|---|---|
+| --- | --- |
 | Framework | Next.js 14 (App Router) |
 | Language | TypeScript |
 | Styling | Tailwind CSS v3 |
@@ -67,7 +69,7 @@ No environment variables required — all calculations are purely client-side.
 
 ## Project Structure
 
-```
+```text
 src/
 ├── app/
 │   ├── page.tsx                     # Home — calculator grid
