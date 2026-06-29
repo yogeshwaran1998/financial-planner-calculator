@@ -46,7 +46,7 @@ export function InvestmentChart({ data }: InvestmentChartProps) {
               </span>
             </div>
             <div className="flex items-center gap-2 text-sm border-t border-[var(--border-color)] pt-1.5 mt-1">
-              <span className="w-2.5 h-2.5 rounded-full flex-shrink-0 bg-[var(--accent)]" />
+              <span className="w-2.5 h-2.5 rounded-full flex-shrink-0 bg-amber-400" />
               <span className="text-[var(--foreground)] font-medium">Total:</span>
               <span className="font-bold text-[var(--foreground)] tabular-nums ml-auto pl-4">
                 {formatCurrency(payload[2]?.value || 0, currency)}
@@ -80,8 +80,8 @@ export function InvestmentChart({ data }: InvestmentChartProps) {
               <stop offset="100%" stopColor="#059669" />
             </linearGradient>
             <linearGradient id="totalGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#93c5fd" />
-              <stop offset="100%" stopColor="#3b82f6" />
+              <stop offset="0%" stopColor="#fcd34d" />
+              <stop offset="100%" stopColor="#d97706" />
             </linearGradient>
           </defs>
 
