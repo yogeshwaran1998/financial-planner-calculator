@@ -28,8 +28,10 @@ function formatNumber(amount: number, currencyCode: CurrencyCode): string {
   return n < 0 ? `-${formatted}` : formatted;
 }
 
+export function getCurrencySymbol(currencyCode: CurrencyCode): string {
+  return currencies.find((c) => c.code === currencyCode)?.symbol ?? "$";
+}
+
 export function formatCurrency(amount: number, currencyCode: CurrencyCode): string {
-  const currency = currencies.find((c) => c.code === currencyCode);
-  const symbol = currency?.symbol || "$";
-  return `${symbol}${formatNumber(amount, currencyCode)}`;
+  return `${getCurrencySymbol(currencyCode)}${formatNumber(amount, currencyCode)}`;
 }

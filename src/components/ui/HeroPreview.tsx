@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { animate } from "framer-motion";
 import { useCurrency } from "@/context/CurrencyContext";
-import { formatCurrency } from "@/lib/currencies";
+import { formatCurrency, getCurrencySymbol } from "@/lib/currencies";
 import { calculateSIPGrowth } from "@/lib/calculations";
 
 const MONTHLY_SIP = 10000;
@@ -45,6 +45,7 @@ export function HeroPreview() {
   const spanRef = useRef<HTMLSpanElement>(null);
   const prevRef = useRef(0);
 
+  const symbol = getCurrencySymbol(currency);
   const { finalValue, totalInvested } = calculateSIPGrowth(MONTHLY_SIP, CAGR, YEARS, 0);
   const returns = finalValue - totalInvested;
 
@@ -86,7 +87,7 @@ export function HeroPreview() {
       {/* Header row */}
       <div className="flex items-center justify-between mb-3">
         <div>
-          <p className="text-sm text-[var(--muted-foreground)] mb-0.5">SIP · ₹10K/mo · 12% · 20 yrs</p>
+          <p className="text-sm text-[var(--muted-foreground)] mb-0.5">SIP · {symbol}10K/mo · 12% · 20 yrs</p>
           <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-wider">Live Preview</p>
         </div>
         <span className="text-xs px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-medium">
