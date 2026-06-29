@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { HeroPreview } from "@/components/ui/HeroPreview";
 import { CALCULATORS, CATEGORY_ORDER } from "@/lib/calculators";
-import { currencies } from "@/lib/currencies";
+import { currencies, getCurrencySymbol } from "@/lib/currencies";
+import { useCurrency } from "@/context/CurrencyContext";
 
 // ── Variants ──────────────────────────────────────────────────────────────────
 const fadeUp: Variants = {
@@ -24,13 +25,6 @@ const cardVariant: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-// ── Stat band data ────────────────────────────────────────────────────────────
-const stats = [
-  { value: `${CALCULATORS.length}`, label: "Calculators" },
-  { value: `${currencies.length}`, label: "Currencies" },
-  { value: "100%", label: "Private — runs in browser" },
-  { value: "₹0", label: "No cost, no login" },
-];
 
 // ── Feature strip data ────────────────────────────────────────────────────────
 const features = [
@@ -58,6 +52,14 @@ const features = [
 ];
 
 export default function HomePage() {
+  const { currency } = useCurrency();
+  const stats = [
+    { value: `${CALCULATORS.length}`, label: "Calculators" },
+    { value: `${currencies.length}`, label: "Currencies" },
+    { value: "100%", label: "Private — runs in browser" },
+    { value: `${getCurrencySymbol(currency)}0`, label: "No cost, no login" },
+  ];
+
   const byCategory = CATEGORY_ORDER.map((cat) => ({
     category: cat,
     calcs: CALCULATORS.filter((c) => c.category === cat),
